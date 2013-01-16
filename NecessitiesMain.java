@@ -46,6 +46,7 @@ public class NecessitiesMain {
 	private boolean bEnableSetMotd, bEnableSetSpawn, bEnableSetWarp, bEnableSpawn, bEnableWarp, bEnableWarpList ;
 	private boolean bEnableWhoAmI, bEnableListOps, bEnableMemInfo, bEnableDrain, bEnableButcher, bEnableWand ;
 	private boolean bEnableRemove, bEnableGm, bEnableTPAHere, bEnableTPDenyAll, bEnableTPReject, bEnableTPAccept ;
+	private boolean bEnableTPA ;
 
 	public boolean bNickRequiresOp, bUseNormalBrackets, bEnableWorldEdit, bEnableChatFilter ;
 
@@ -82,6 +83,7 @@ public class NecessitiesMain {
 		bEnableTPDenyAll = config.get("Commands", "EnableTPDenyAll", true).getBoolean(true) ;
 		bEnableTPReject = config.get("Commands", "EnableTPReject", true).getBoolean(true) ;
 		bEnableTPAccept = config.get("Commands", "EnableTPAccept", true).getBoolean(true) ;
+		bEnableTPA = config.get("Commands", "EnableTPA", true).getBoolean(true) ;
 		
 		bEnableHome = config.get("Commands", "EnableHome", true).getBoolean(true) ;
 		bEnableListHome = config.get("Commands", "EnableListHome", true).getBoolean(true) ;
@@ -208,6 +210,7 @@ public class NecessitiesMain {
 		if (bEnableTPDenyAll)		serverCommandManager.registerCommand(new CommandTPDenyAll()) ;
 		if (bEnableTPReject)		serverCommandManager.registerCommand(new CommandTPReject()) ;
 		if (bEnableTPAccept)		serverCommandManager.registerCommand(new CommandTPAccept()) ;
+		if (bEnableTPA)				serverCommandManager.registerCommand(new CommandTPA()) ;
 		
 		if (bEnableWorldEdit) {
 			if (bEnableDrain)		serverCommandManager.registerCommand(new CommandDrain()) ;
