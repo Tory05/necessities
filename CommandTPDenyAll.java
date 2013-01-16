@@ -19,7 +19,7 @@ public class CommandTPDenyAll extends CommandBaseNecessities {
 	@Override
     public String getCommandUsage(ICommandSender par1ICommandSender)
     {
-    	return "/" + getCommandName() + "<true/false>" ;
+    	return "/" + getCommandName() + " <true/false>" ;
     }
 
 	@Override
