@@ -47,6 +47,7 @@ public class CommandTPA extends CommandBaseNecessities {
 		}
 		tpa.setString("Command", "TPA") ;
 		tpa.setString("Who", player.username) ;
+		player.sendChatToPlayer("Sending teleport request to player " + other.username) ;
 		other.sendChatToPlayer(player.username	+ " has requested to teleport to you.  Use /tpaccept to accept or /tpreject to refuse.") ;
     }
 	

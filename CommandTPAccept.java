@@ -50,6 +50,7 @@ public class CommandTPAccept extends CommandBaseNecessities {
     			server.getConfigurationManager().transferPlayerToDimension(other, player.dimension) ;
     		}
 
+    		setBackLocation((EntityPlayer)other) ;
     		other.playerNetServerHandler.setPlayerLocation(player.posX, player.posY,  player.posZ,  player.rotationYaw, player.rotationPitch) ;
     		
     	} else { // accepting a /tpahere
