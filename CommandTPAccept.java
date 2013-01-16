@@ -32,33 +32,47 @@ public class CommandTPAccept extends CommandBaseNecessities {
 		
 		EntityPlayer player = getCommandSenderAsPlayer(sender) ; 
     	EntityPlayerMP playerMP = (EntityPlayerMP) sender ;
+		MinecraftServer server = ModLoader.getMinecraftServerInstance() ;
     	
     	NBTTagCompound playerdata = NecessitiesMain.instance.necessities_data.getCompoundTag(player.username) ;
     	NecessitiesMain.instance.necessities_data.setCompoundTag(player.username, playerdata) ;
     	NBTTagCompound tpa = playerdata.getCompoundTag("[Tpa]") ;
     	playerdata.setCompoundTag("[Tpa]", tpa) ;
     	String who = tpa.getString("Who") ;
+		EntityPlayerMP other = func_82359_c(sender, who) ;
 
-    	setBackLocation(player) ;
+
+    	if (tpa.hasKey("Command")) { // accepting a /tpa
+    		other.sendChatToPlayer(player.username + " has accepted your teleport request.") ;
+    		player.sendChatToPlayer("Teleport request from " + who + " accepted.") ;
+    		
+    		if (player.dimension != other.dimension) {
+    			server.getConfigurationManager().transferPlayerToDimension(other, player.dimension) ;
+    		}
+
+    		other.playerNetServerHandler.setPlayerLocation(player.posX, player.posY,  player.posZ,  player.rotationYaw, player.rotationPitch) ;
+    		
+    	} else { // accepting a /tpahere
+    		setBackLocation(player) ;
     	
-    	EntityPlayerMP other = func_82359_c(sender, who) ;
-    	other.sendChatToPlayer(player.username + " has accepted your teleport request.") ;
-    	player.sendChatToPlayer("Teleport request from " + who + " accepted.") ;
-    	double posX = tpa.getDouble("PosX") ;
-    	double posY = tpa.getDouble("PosY") ;
-    	double posZ = tpa.getDouble("PosZ") ;
-    	float yaw = tpa.getFloat("Yaw") ;
-    	float pitch = tpa.getFloat("Pitch") ;
-    	int dim = tpa.getInteger("Dim") ;
+    		other.sendChatToPlayer(player.username + " has accepted your teleport request.") ;
+    		player.sendChatToPlayer("Teleport request from " + who + " accepted.") ;
+    		double posX = tpa.getDouble("PosX") ;
+    		double posY = tpa.getDouble("PosY") ;
+    		double posZ = tpa.getDouble("PosZ") ;
+    		float yaw = tpa.getFloat("Yaw") ;
+    		float pitch = tpa.getFloat("Pitch") ;
+    		int dim = tpa.getInteger("Dim") ;
     	
-	   	MinecraftServer server = ModLoader.getMinecraftServerInstance() ;
+    		if (player.dimension != dim) {
+    			server.getConfigurationManager().transferPlayerToDimension(playerMP, dim) ;
+    		}
     	
-    	if (player.dimension != dim) {
-    		server.getConfigurationManager().transferPlayerToDimension(playerMP, dim) ;
-    	}
-    	
-       	playerMP.playerNetServerHandler.setPlayerLocation(posX, posY, posZ, yaw, pitch) ;
-       	
+    		playerMP.playerNetServerHandler.setPlayerLocation(posX, posY, posZ, yaw, pitch) ;
+    	} // if (tpa.hasKey("Command"))
+
+    	if (tpa.hasKey("Command")) tpa.removeTag("Command") ;
+    	tpa.removeTag("Who") ;
        	tpa.removeTag("PosX") ;
        	tpa.removeTag("PosY") ;
        	tpa.removeTag("PosZ") ;
