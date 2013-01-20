@@ -67,22 +67,13 @@ public class CommandSummon extends CommandBaseNecessities {
 	} // public void processCommand(...)
 
 	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender sender) {
-		if (Loader.instance().isModLoaded("MCPermissions")) {
-			if (isPlayer(sender)
-					&& NecessitiesPermissions.Instance.hasPermission(
-							sender.getCommandSenderName(),
-							"necessities.tpahere"))
-				return true;
-		} else if (isOP(sender)) {
-			return true;
-		} else {
-			return false;
-		}
-
-		return false;
-
-	} // public boolean canCommandSenderUseCommand(...)
+    public boolean canCommandSenderUseCommand(ICommandSender sender)
+    {
+		if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.tpahere"))
+			return true ;
+		else
+			return false ;
+    } // public boolean canCommandSenderUseCommand(...)
 
 	/**
 	 * Return whether the specified command parameter index is a username

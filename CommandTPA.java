@@ -52,22 +52,13 @@ public class CommandTPA extends CommandBaseNecessities {
     }
 	
 	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender sender) {
-		if (Loader.instance().isModLoaded("MCPermissions")) {
-			if (isPlayer(sender)
-					&& NecessitiesPermissions.Instance.hasPermission(
-							sender.getCommandSenderName(),
-							"necessities.tpa"))
-				return true;
-		} else if (isOP(sender)) {
-			return true;
-		} else {
-			return false;
-		}
-
-		return false;
-
-	} // public boolean canCommandSenderUseCommand(...)
+    public boolean canCommandSenderUseCommand(ICommandSender sender)
+    {
+		if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.tpa"))
+			return true ;
+		else
+			return false ;
+    } // public boolean canCommandSenderUseCommand(...)
 
 	/**
 	 * Return whether the specified command parameter index is a username
