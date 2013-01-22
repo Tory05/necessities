@@ -65,7 +65,11 @@ public class PlayerTracker implements IPlayerTracker {
 
     	long now = System.currentTimeMillis() ;
     	playerdata.setLong("[Seen]",  now) ;
-	}
+    	
+    	if (playerdata.hasKey("[Worldedit]")) {
+    		playerdata.removeTag("[Worldedit]") ;
+    	}
+	} // public void onPlayerLogout(...)
 
 	
 	@Override

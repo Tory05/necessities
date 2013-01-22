@@ -46,7 +46,7 @@ public class NecessitiesMain {
 	private boolean bEnableSetMotd, bEnableSetSpawn, bEnableSetWarp, bEnableSpawn, bEnableWarp, bEnableWarpList ;
 	private boolean bEnableWhoAmI, bEnableListOps, bEnableMemInfo, bEnableDrain, bEnableButcher, bEnableWand ;
 	private boolean bEnableRemove, bEnableGm, bEnableTPAHere, bEnableTPDenyAll, bEnableTPReject, bEnableTPAccept ;
-	private boolean bEnableTPA, bEnableToggleEditWand ;
+	private boolean bEnableTPA, bEnableToggleEditWand, bEnableDelSel ;
 
 	public boolean bNickRequiresOp, bUseNormalBrackets, bEnableWorldEdit, bEnableChatFilter ;
 
@@ -85,6 +85,8 @@ public class NecessitiesMain {
 		bEnableTPAccept = config.get("Commands", "EnableTPAccept", true).getBoolean(true) ;
 		bEnableTPA = config.get("Commands", "EnableTPA", true).getBoolean(true) ;
 		bEnableToggleEditWand = config.get("Commands", "EnableToggleEditWand", true).getBoolean(true) ;
+		bEnableDelSel = config.get("Commands", "EnableDeSel", true).getBoolean(true) ;
+		
 		
 		bEnableHome = config.get("Commands", "EnableHome", true).getBoolean(true) ;
 		bEnableListHome = config.get("Commands", "EnableListHome", true).getBoolean(true) ;
@@ -219,6 +221,7 @@ public class NecessitiesMain {
 			if (bEnableWand)			serverCommandManager.registerCommand(new CommandWand()) ;
 			if (bEnableRemove)			serverCommandManager.registerCommand(new CommandRemove()) ;
 			if (bEnableToggleEditWand)	serverCommandManager.registerCommand(new CommandToggleEditWand()) ;
+			if (bEnableDelSel)			serverCommandManager.registerCommand(new CommandDelSel()) ;
 		}
 			
 		GameRegistry.registerPlayerTracker(new PlayerTracker(necessities_data)) ;

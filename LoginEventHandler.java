@@ -118,7 +118,7 @@ public class LoginEventHandler {
 		
 		event.setCanceled(true) ;
 		
-	}
+	} // public void onPlayerInteractEvent(...)
 
 	
 	
