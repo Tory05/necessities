@@ -52,12 +52,8 @@ public class CommandTPA extends CommandBaseNecessities {
     }
 	
 	@Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-		if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.tpa"))
-			return true ;
-		else
-			return false ;
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+		return hasPermission(sender, "necessities.tpa", false, false) ;
     } // public boolean canCommandSenderUseCommand(...)
 
 	/**

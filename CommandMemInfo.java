@@ -39,13 +39,8 @@ public class CommandMemInfo extends CommandBaseNecessities {
     } // public void processCommand(...)
   	
 	@Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-		if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.meminfo"))
-			return true ;
-		else
-			return false ;
-		
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+		return hasPermission(sender, "necessities.meminfo", false, false) ;
     } // public boolean canCommandSenderUseCommand(...)
 
     

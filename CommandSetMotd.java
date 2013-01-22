@@ -47,17 +47,8 @@ public class CommandSetMotd extends CommandBaseNecessities {
   	
 		
 	@Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-		if (Loader.instance().isModLoaded("MCPermissions")) {
-			if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.setmotd"))	
-				return true ;
-		} else if (isOP(sender)) {
-			return true ;
-		}
-		
-		return false ;
-		
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+		return hasPermission(sender, "necessities.setmotd", true, false) ;
     } // public boolean canCommandSenderUseCommand(...)
 
 

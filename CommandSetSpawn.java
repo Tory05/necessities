@@ -63,17 +63,8 @@ public class CommandSetSpawn extends CommandBaseNecessities {
   	
 		
 	@Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-		if (Loader.instance().isModLoaded("MCPermissions")) {
-			if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.setspawn"))	
-				return true ;
-		} else if (isOP(sender)) {
-			return true ;
-		}
-		
-		return false ;
-		
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+		return hasPermission(sender, "necessities.setspawn", true, false) ;
     } // public boolean canCommandSenderUseCommand(...)
    
     

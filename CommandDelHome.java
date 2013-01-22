@@ -59,12 +59,8 @@ public class CommandDelHome extends CommandBaseNecessities {
 	}
 
 	@Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-		if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.delhome"))	
-			return true ;
-
-		return false ;
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+		return hasPermission(sender, "necessities.delhome", false, false) ;
     }
 
 	

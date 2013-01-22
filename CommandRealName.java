@@ -60,12 +60,8 @@ public class CommandRealName extends CommandBaseNecessities {
 
 	
 	@Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-		if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.realname"))
-			return true ;
-		else
-			return false ;
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+		return hasPermission(sender, "necessities.realname", false, false) ;
     } // public boolean canCommandSenderUseCommand(...)
 
 	

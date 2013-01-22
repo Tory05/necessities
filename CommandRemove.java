@@ -67,19 +67,8 @@ public class CommandRemove extends CommandBaseNecessities {
     }
 	
 	@Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-		if (Loader.instance().isModLoaded("MCPermissions")) {
-			if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.remove"))	
-				return true ;
-		} else if (isOP(sender)) {
-			return true ;
-		} else {
-			return false ;
-		}
-
-		return false ;
-		
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+		return hasPermission(sender, "necessities.remove", true, false) ;
     } // public boolean canCommandSenderUseCommand(...)
 
 } // public class CommandRemove

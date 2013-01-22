@@ -47,19 +47,8 @@ public class CommandDelWarp extends CommandBaseNecessities {
 	} // public void processCommand(...)
 
 	@Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-		if (Loader.instance().isModLoaded("MCPermissions")) {
-			if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.delwarp"))	
-				return true ;
-		} else if (isOP(sender)) {
-			return true ;
-		} else {
-			return false ;
-		}
-
-		return false ;
-		
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+		return hasPermission(sender, "necessities.delwarp", true, false) ;
     } // public boolean canCommandSenderUseCommand(...)
 
 }

@@ -28,12 +28,8 @@ public class CommandWhoAmI extends CommandBaseNecessities {
     }
 	
 	@Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-		if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.whoami"))
-			return true ;
-		else
-			return false ;
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+		return hasPermission(sender, "necessities.whoami", false, false) ;
     } // public boolean canCommandSenderUseCommand(...)
 
 } // public class CommandWhoAmI

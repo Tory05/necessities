@@ -51,13 +51,8 @@ public class CommandListOps extends CommandBaseNecessities {
 	
 	
 	@Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-		if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.listops"))
-			return true ;
-		else
-			return false ;
-		
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+		return hasPermission(sender, "necessities.listops", false, true) ;
     } // public boolean canCommandSenderUseCommand(...)
 	
 

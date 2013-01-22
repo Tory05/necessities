@@ -57,12 +57,8 @@ public class CommandSpawn extends CommandBaseNecessities {
     } // public void processCommand(...)
   	
 	@Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-		if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.spawn"))
-			return true ;
-		else
-			return false ;
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+		return hasPermission(sender, "necessities.spawn", false, false) ;
     } // public boolean canCommandSenderUseCommand(...)
 
 	

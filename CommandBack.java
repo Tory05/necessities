@@ -67,10 +67,7 @@ public class CommandBack extends CommandBaseNecessities {
 	@Override
     public boolean canCommandSenderUseCommand(ICommandSender sender)
     {
-		if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.back"))	
-			return true ;
-
-		return false ;
+		return hasPermission(sender, "necessities.back", false, false) ;
     }
 
 

@@ -65,12 +65,8 @@ public class CommandSetHome extends CommandBaseNecessities {
     } // public void processCommand(...)
   	
 	@Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-		if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.sethome"))
-			return true ;
-		else
-			return false ;
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+		return hasPermission(sender, "necessities.sethome", false, false) ;
     } // public boolean canCommandSenderUseCommand(...)
 		
 

@@ -20,8 +20,6 @@ import net.minecraft.src.ModLoader;
 
 public class CommandNick extends CommandBaseNecessities {
 
-	public boolean bOP ;
-
 	public CommandNick() {
 	}
 		
@@ -45,8 +43,7 @@ public class CommandNick extends CommandBaseNecessities {
 
 		// Check for special case where necessities.nick.self and user put someone else's name in
 		if (!sender.getCommandSenderName().equalsIgnoreCase(var2[0])) {
-			if (Loader.instance().isModLoaded("MCPermissions") && 
-				!NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.nick.others")) {
+			if (!hasPermission(sender, "necessities.nick.others", false, false)) {
 				sender.sendChatToPlayer("You do not have permission to change nicknames for anyone other than yourself.") ;
 				return ;
 			}
@@ -79,26 +76,23 @@ public class CommandNick extends CommandBaseNecessities {
 	@Override
     public boolean canCommandSenderUseCommand(ICommandSender sender)
     {
-		bOP = false ;
-		if (!isPlayer(sender)) {
-			sender.sendChatToPlayer("Not a valid console command.") ;
-			return false ;
-		}
 
-		if (Loader.instance().isModLoaded("MCPermissions")) {
-			if (NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.nick.self") ||
-				NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.nick.others")) {
-				bOP = true ;
+		if (NecessitiesMain.instance.bNickRequiresOp){
+			if (hasPermission(sender, "necessities.nick.self", true, false) ||
+				hasPermission(sender, "necessities.nick.others", true, false)) {
+				return true ;
 			} else {
-				bOP = false ;
+				return false ;
 			}
-		} else if (NecessitiesMain.instance.bNickRequiresOp && isOP(sender)) {
-			bOP = true ;
 		} else {
-			bOP = false ;
-		}
-
-		return bOP ;
+			if (hasPermission(sender, "necessities.nick.self", false, false) ||
+				hasPermission(sender, "necessities.nick.others", false, false)) {
+				return true ;
+			} else {
+				return false ;
+			}
+		} // if (bNickRequiresOp)
+		
 		
     } // public boolean canCommandSenderUseCommand(...)
     

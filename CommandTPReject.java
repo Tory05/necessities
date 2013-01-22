@@ -45,12 +45,8 @@ public class CommandTPReject extends CommandBaseNecessities {
     }
 	
 	@Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-		if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.tpreject"))
-			return true ;
-		else
-			return false ;
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+		return hasPermission(sender, "necessities.tpreject", false, false) ;
     } // public boolean canCommandSenderUseCommand(...)
 
 } // public class CommandReject

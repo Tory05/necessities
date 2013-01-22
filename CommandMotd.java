@@ -37,12 +37,8 @@ public class CommandMotd extends CommandBaseNecessities {
     } // public void processCommand(...)
 
 	@Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-		if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.motd"))
-			return true ;
-		else
-			return false ;
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+		return hasPermission(sender, "necessities.motd", false, false) ;
     } // public boolean canCommandSenderUseCommand(...)
     
 } // public class CommandMotd

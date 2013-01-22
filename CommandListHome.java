@@ -65,13 +65,8 @@ public class CommandListHome extends CommandBaseNecessities {
     } // public voice processCommand(...)
   	
 	@Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-		if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.listhome"))
-			return true ;
-		else
-			return false ;
-		
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+		return hasPermission(sender, "necessities.listhome", false, false) ;
     } // public boolean canCommandSenderUseCommand(...)
 
     

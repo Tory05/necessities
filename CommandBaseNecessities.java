@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.List;
 import java.util.Set;
 
+import cpw.mods.fml.common.Loader;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,6 +41,51 @@ public class CommandBaseNecessities extends CommandBase {
 		
 	}
 
+
+	//
+	// See if the player has permissions to perform the command
+	// requireOP:   true = this command requires an operator (or permission node)
+	// allowConsole:  true = command works from console
+	//
+	public boolean hasPermission(ICommandSender sender, String node, boolean requireOP, boolean allowConsole) {
+
+		if (!isPlayer(sender)) {
+			if (allowConsole) {
+				return true ;
+			} else {
+				sender.sendChatToPlayer("Command not allowed from server console.") ;
+				return false ;
+			}
+		} // if (!isPlayer(sender))
+
+		// Check for MCPermissions
+		if (Loader.instance().isModLoaded("MCPermissions")) {
+			if (NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), node))
+				return true ;
+		} // if (MCPermissions)
+
+		// Check for PermissionsEx
+		if (Loader.instance().isModLoaded("PermissionsEx")) {
+			
+		} // if (PermissionsEx)
+
+		
+		if (requireOP) {
+			MinecraftServer server = ModLoader.getMinecraftServerInstance() ;
+	    	EntityPlayer player = getCommandSenderAsPlayer(sender) ; 
+	    	Set ops = server.getConfigurationManager().getOps();
+	    	if (!ops.contains(player.username.toLowerCase())) {
+	    		return false ;
+	    	} else {
+	    		return true ;
+	    	}
+		} // if (requireOP)
+			
+		return false ;
+		
+	}
+	
+	
 	public void setBackLocation(EntityPlayer player) {
     	NBTTagCompound playerdata = NecessitiesMain.instance.necessities_data.getCompoundTag(player.username) ;
     	NecessitiesMain.instance.necessities_data.setCompoundTag(player.username, playerdata) ;
@@ -78,28 +125,6 @@ public class CommandBaseNecessities extends CommandBase {
     		return true ;
     }
    
-    
-    public boolean isOP(ICommandSender var1) {
-
-    	if (!isPlayer(var1)) {
-    		var1.sendChatToPlayer("Command cannot be used from server console.") ;
-    		return false ;
-    	}
-    	
-    	MinecraftServer server = ModLoader.getMinecraftServerInstance() ;
-    	EntityPlayer player = (EntityPlayer) var1 ;
-
-    	// Only OPs are allowed to set spawn
-    	Set ops = server.getConfigurationManager().getOps();
-    	if (!ops.contains(player.username.toLowerCase())) {
-    		return false ;
-    	}
-
-    	
-    	return true ;
- 	} // public boolean isOP(...)
-
-    
 	
 } // public class CommandBaseNecessities
 

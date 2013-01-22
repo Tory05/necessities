@@ -92,17 +92,7 @@ public class CommandButcher extends CommandBaseNecessities {
 	@Override
     public boolean canCommandSenderUseCommand(ICommandSender sender)
     {
-		if (Loader.instance().isModLoaded("MCPermissions")) {
-			if (isPlayer(sender) && NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), "necessities.butcher"))	
-				return true ;
-		} else if (isOP(sender)) {
-			return true ;
-		} else {
-			return false ;
-		}
-
-		return false ;
-		
+		return hasPermission(sender, "necessities.butcher", true, false) ;
     } // public boolean canCommandSenderUseCommand(...)
 
 
