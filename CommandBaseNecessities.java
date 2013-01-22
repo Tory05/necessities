@@ -50,9 +50,7 @@ public class CommandBaseNecessities extends CommandBase {
 	public boolean hasPermission(ICommandSender sender, String node, boolean requireOP, boolean allowConsole) {
 
 		if (!isPlayer(sender)) {
-			if (allowConsole) {
-				return true ;
-			} else {
+			if (!allowConsole) {
 				sender.sendChatToPlayer("Command not allowed from server console.") ;
 				return false ;
 			}
@@ -60,8 +58,8 @@ public class CommandBaseNecessities extends CommandBase {
 
 		// Check for MCPermissions
 		if (Loader.instance().isModLoaded("MCPermissions")) {
-			if (NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), node))
-				return true ;
+			if (!NecessitiesPermissions.Instance.hasPermission(sender.getCommandSenderName(), node))
+				return false ;
 		} // if (MCPermissions)
 
 		// Check for PermissionsEx
@@ -69,21 +67,17 @@ public class CommandBaseNecessities extends CommandBase {
 			
 		} // if (PermissionsEx)
 
-		
 		if (requireOP) {
 			MinecraftServer server = ModLoader.getMinecraftServerInstance() ;
 	    	EntityPlayer player = getCommandSenderAsPlayer(sender) ; 
 	    	Set ops = server.getConfigurationManager().getOps();
 	    	if (!ops.contains(player.username.toLowerCase())) {
 	    		return false ;
-	    	} else {
-	    		return true ;
 	    	}
 		} // if (requireOP)
 			
-		return false ;
-		
-	}
+		return true ;
+	} // public boolean hasPermission(...)
 	
 	
 	public void setBackLocation(EntityPlayer player) {

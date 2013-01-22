@@ -1,5 +1,6 @@
 package kdx7214.necessities;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChunkCoordinates;
@@ -88,11 +89,29 @@ public class LoginEventHandler {
 		if (event.entityPlayer.getCurrentEquippedItem().itemID != NecessitiesMain.instance.WorldEditWandItem)
 			return ;
 		
-		
+    	EntityPlayer player = event.entityPlayer ; 
+    	NBTTagCompound playerdata = NecessitiesMain.instance.necessities_data.getCompoundTag(player.username) ;
+    	NecessitiesMain.instance.necessities_data.setCompoundTag(player.username, playerdata) ;
+
+    	// if not found, default to true
+    	if (playerdata.hasKey("[ToggleEditWand]")) {
+    		if (!playerdata.getBoolean("[ToggleEditWand]"))
+    			return ;
+    	}
+
+   		NBTTagCompound we = playerdata.getCompoundTag("[Worldedit]") ;
+   		playerdata.setCompoundTag("[Worldedit]",  we) ;
+    	
 		if (event.action == PlayerInteractEvent.Action.LEFT_CLICK_BLOCK) {
-			// mark one corner
+			we.setDouble("Pos1.X", player.posX) ;
+			we.setDouble("Pos1.Y", player.posY) ;
+			we.setDouble("Pos1.Z", player.posZ) ; 
+			player.sendChatToPlayer("\u00a7dPosition 1 set to (" + player.posX + ", " + player.posY + ", " + player.posZ + ")") ;
 		} else if (event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
-			// Mark the other corner
+			we.setDouble("Pos2.X", player.posX) ;
+			we.setDouble("Pos2.Y", player.posY) ;
+			we.setDouble("Pos2.Z", player.posZ) ; 
+			player.sendChatToPlayer("\u00a7dPosition 2 set to (" + player.posX + ", " + player.posY + ", " + player.posZ + ")") ;
 		} else {
 			return ;
 		}
