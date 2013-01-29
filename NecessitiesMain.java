@@ -33,7 +33,7 @@ import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.common.Configuration;
 
-@Mod(modid = "necessities", name = "Necessities", version = "0.6.8")
+@Mod(modid = "necessities", name = "Necessities", version = "0.6.9")
 @NetworkMod(clientSideRequired = false, serverSideRequired = true)
 public class NecessitiesMain {
 
@@ -46,7 +46,7 @@ public class NecessitiesMain {
 	private boolean bEnableSetMotd, bEnableSetSpawn, bEnableSetWarp, bEnableSpawn, bEnableWarp, bEnableWarpList ;
 	private boolean bEnableWhoAmI, bEnableListOps, bEnableMemInfo, bEnableDrain, bEnableButcher, bEnableWand ;
 	private boolean bEnableRemove, bEnableGm, bEnableTPAHere, bEnableTPDenyAll, bEnableTPReject, bEnableTPAccept ;
-	private boolean bEnableTPA, bEnableToggleEditWand, bEnableDelSel, bEnablePos1, bEnablePos2 ;
+	private boolean bEnableTPA, bEnableToggleEditWand, bEnableDelSel, bEnablePos1, bEnablePos2, bEnableLimit ;
 
 	public boolean bNickRequiresOp, bUseNormalBrackets, bEnableWorldEdit, bEnableChatFilter ;
 
@@ -88,6 +88,7 @@ public class NecessitiesMain {
 		bEnableDelSel = config.get("Commands", "EnableDeSel", true).getBoolean(true) ;
 		bEnablePos1 = config.get("Commands", "EnablePos1", true).getBoolean(true) ;
 		bEnablePos2 = config.get("Commands", "EnablePos2", true).getBoolean(true) ;
+		bEnableLimit = config.get("Commands", "EnableLimit", true).getBoolean(true) ;
 		
 		
 		bEnableHome = config.get("Commands", "EnableHome", true).getBoolean(true) ;
@@ -226,6 +227,7 @@ public class NecessitiesMain {
 			if (bEnableDelSel)			serverCommandManager.registerCommand(new CommandDelSel()) ;
 			if (bEnablePos1)			serverCommandManager.registerCommand(new CommandPos1()) ;
 			if (bEnablePos2)			serverCommandManager.registerCommand(new CommandPos2()) ;
+			if (bEnableLimit)			serverCommandManager.registerCommand(new CommandLimit()) ;
 		}
 			
 		GameRegistry.registerPlayerTracker(new PlayerTracker(necessities_data)) ;

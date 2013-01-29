@@ -48,6 +48,18 @@ public class CommandDrain extends CommandBaseNecessities {
     	EntityPlayer player = getCommandSenderAsPlayer(sender) ; 
     	EntityPlayerMP playerMP = (EntityPlayerMP)sender ;
     	Set<Integer> blocks = new HashSet<Integer>() ;
+
+    	NBTTagCompound playerdata = NecessitiesMain.instance.necessities_data.getCompoundTag(player.username) ;
+    	NecessitiesMain.instance.necessities_data.setCompoundTag(player.username, playerdata) ;
+   		NBTTagCompound we = playerdata.getCompoundTag("[Worldedit]") ;
+   		playerdata.setCompoundTag("[Worldedit]",  we) ;
+   		int limit ;
+
+   		if (we.hasKey("Limit")) {
+   			limit = we.getInteger("Limit") ;
+   		} else {
+   			limit = Integer.MAX_VALUE ;
+   		}
     	
     	// air == block id #0
     	// water == block id #8-9 (9 = stationary)  Block.waterStill Block.waterMoving
@@ -102,7 +114,9 @@ public class CommandDrain extends CommandBaseNecessities {
     				
     				if (dist - 0.5 < radius) {  // This means we are within the sphere
     					if (blocks.contains(playerMP.getServerForPlayer().getBlockId((int)i, (int)j, (int)k))) {
-    						playerMP.getServerForPlayer().setBlockWithNotify((int)i, (int)j, (int)k, 0) ;
+    						if (count < limit) {
+    							playerMP.getServerForPlayer().setBlockWithNotify((int)i, (int)j, (int)k, 0) ;
+    						}
     						count++ ;
     					} // if (block needs to be changed)
     				} // if (within sphere)
