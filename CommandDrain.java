@@ -78,7 +78,7 @@ public class CommandDrain extends CommandBaseNecessities {
     	
     	radius = Double.parseDouble(var2[1]) ;
     	if (radius < 1.0 || radius > 100.0) {
-    		sender.sendChatToPlayer("Radius must be between 0 and 100") ;
+    		sender.sendChatToPlayer("Radius must be between 1 and 100") ;
     		return ;
     	}
 

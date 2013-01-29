@@ -199,7 +199,7 @@ public class NecessitiesMain {
 		if (bEnableMods)			serverCommandManager.registerCommand(new CommandMods()) ;
 		if (bEnableSetMotd)			serverCommandManager.registerCommand(new CommandSetMotd()) ;
 		if (bEnableMotd)			serverCommandManager.registerCommand(new CommandMotd()) ;
-		//serverCommandManager.registerCommand(new CommandReport()) ;
+		// serverCommandManager.registerCommand(new CommandReport()) ;
 		if (bEnableNick)			serverCommandManager.registerCommand(new CommandNick()) ;
 		if (bEnableSeen)			serverCommandManager.registerCommand(new CommandSeen()) ;
 		if (bEnableRealName)		serverCommandManager.registerCommand(new CommandRealName()) ;

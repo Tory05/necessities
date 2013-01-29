@@ -29,7 +29,7 @@ public class CommandHome extends CommandBaseNecessities {
 	@Override
     public String getCommandUsage(ICommandSender par1ICommandSender)
     {
-    	return "/" + getCommandName() + " <homename>" ;
+    	return "/" + getCommandName() + " [homename]" ;
     }
 
 	@Override
@@ -38,10 +38,12 @@ public class CommandHome extends CommandBaseNecessities {
     	MinecraftServer server = ModLoader.getMinecraftServerInstance() ;
     	EntityPlayer player = getCommandSenderAsPlayer(sender) ; 
     	EntityPlayerMP playerMP = (EntityPlayerMP) sender ;
-
-    	if (par2ArrayOfStr.length != 1) {
-    		sender.sendChatToPlayer("Usage:  /" + getCommandName() + " <homename>") ;
-    		return ;
+    	String ho = "" ;
+    	
+    	if (par2ArrayOfStr.length == 0) {
+    		ho = "[Default]" ;
+    	} else {
+    		ho = par2ArrayOfStr[0] ;
     	}
 
     	setBackLocation(player) ;
@@ -52,12 +54,12 @@ public class CommandHome extends CommandBaseNecessities {
     	playerdata.setCompoundTag("Homes", homes) ;
     	
     	// Go to the specified home
-    	if (!homes.hasKey(par2ArrayOfStr[0])) {
+    	if (!homes.hasKey(ho)) {
     		sender.sendChatToPlayer("Unknown home.") ;
     		return ;
     	}
     	
-    	NBTTagCompound h = homes.getCompoundTag(par2ArrayOfStr[0]) ;
+    	NBTTagCompound h = homes.getCompoundTag(ho) ;
     	double posX = h.getDouble("PosX") ;
     	double posY = h.getDouble("PosY") ;
     	double posZ = h.getDouble("PosZ") ;

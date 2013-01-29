@@ -24,18 +24,20 @@ public class CommandSetHome extends CommandBaseNecessities {
 
     public String getCommandUsage(ICommandSender par1ICommandSender)
     {
-    	return "/" + getCommandName() + " <homename>" ;
+    	return "/" + getCommandName() + " [homename]" ;
     }
 
     public void processCommand(ICommandSender sender, String[] par2ArrayOfStr)
     {
     	MinecraftServer server = ModLoader.getMinecraftServerInstance() ;
     	EntityPlayer player = getCommandSenderAsPlayer(sender) ; 
+    	String h = "" ;
+    	
 
-    	// First sanity check the arguments
-    	if (par2ArrayOfStr.length != 1) {
-    		sender.sendChatToPlayer("Usage:  /" + getCommandName() + " <homename>") ;
-    		return ;
+    	if (par2ArrayOfStr.length == 0) {
+    		h = "[Default]" ;
+    	} else {
+    		h= par2ArrayOfStr[0] ;
     	}
         	
     	// Now deal with the NBT stuff
@@ -51,16 +53,15 @@ public class CommandSetHome extends CommandBaseNecessities {
     	}
 
     	// There be voodoo here.   If key not found, creates new NBTTagCompound automagically
-    	NBTTagCompound house = homes.getCompoundTag(par2ArrayOfStr[0]) ;
+    	NBTTagCompound house = homes.getCompoundTag(h) ;
 		house.setDouble("PosX", player.posX) ;
 		house.setDouble("PosY", player.posY) ;
 		house.setDouble("PosZ", player.posZ) ;
 		house.setInteger("Dim", player.dimension) ;
 		house.setFloat("Yaw", player.rotationYaw) ;
 		house.setFloat("Pitch", player.rotationPitch); 
-		// house.setFloat("Yaw",  player.cameraYaw) ;
-		homes.setCompoundTag(par2ArrayOfStr[0], house) ;
-		sender.sendChatToPlayer("Home \"" + par2ArrayOfStr[0] + "\" set.") ;
+		homes.setCompoundTag(h, house) ;
+		sender.sendChatToPlayer("Home \"" + h + "\" set.") ;
     	
     } // public void processCommand(...)
   	

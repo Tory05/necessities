@@ -9,6 +9,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import net.minecraft.block.Block;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -17,6 +19,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.ModLoader;
@@ -50,6 +53,19 @@ public class CommandReport extends CommandBaseNecessities {
 
     public void processCommand(ICommandSender sender, String[] var2)
     {
+
+    	for (int i = 0; i < 4096; ++i) {
+    		if (Item.itemsList[i] != null)
+    			System.out.println("Item[" + i + "] == " + Item.itemsList[i].getItemName()) ;
+    		
+    		//if (Block.blocksList[i] != null)
+    		//	System.out.println("Block[" + i + "] == " + Block.blocksList[i].getBlockName()) ;
+    	}
+    	
+    	
+    	
+    	
+    	
     	
     	/*
     	URL url;
