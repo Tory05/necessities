@@ -34,7 +34,7 @@ public class CommandGm extends CommandBaseNecessities {
         {
             EnumGameType var3 = this.getGameModeFromCommand(sender, par2ArrayOfStr[0]);
             EntityPlayerMP var4 = getCommandSenderAsPlayer(sender) ; 
-            var4.sendGameTypeToPlayer(var3);
+            var4.setGameType(var3);
             var4.fallDistance = 0.0F;
             String var5 = StatCollector.translateToLocal("gameMode." + var3.getName());
 

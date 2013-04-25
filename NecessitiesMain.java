@@ -47,6 +47,7 @@ public class NecessitiesMain {
 	private boolean bEnableWhoAmI, bEnableListOps, bEnableMemInfo, bEnableDrain, bEnableButcher, bEnableWand ;
 	private boolean bEnableRemove, bEnableGm, bEnableTPAHere, bEnableTPDenyAll, bEnableTPReject, bEnableTPAccept ;
 	private boolean bEnableTPA, bEnableToggleEditWand, bEnableDelSel, bEnablePos1, bEnablePos2, bEnableLimit ;
+	private boolean bEnableChunk ;
 
 	public boolean bNickRequiresOp, bUseNormalBrackets, bEnableWorldEdit, bEnableChatFilter ;
 
@@ -89,6 +90,7 @@ public class NecessitiesMain {
 		bEnablePos1 = config.get("Commands", "EnablePos1", true).getBoolean(true) ;
 		bEnablePos2 = config.get("Commands", "EnablePos2", true).getBoolean(true) ;
 		bEnableLimit = config.get("Commands", "EnableLimit", true).getBoolean(true) ;
+		bEnableChunk = config.get("Commands", "EnableChunk", true).getBoolean(true) ;
 		
 		
 		bEnableHome = config.get("Commands", "EnableHome", true).getBoolean(true) ;
@@ -112,7 +114,7 @@ public class NecessitiesMain {
 		bEnableWorldEdit = config.get("Functionality", "EnableWorldEdit", true).getBoolean(true) ; 
 		WorldEditWandItem = config.get("Funcionality", "WorldEditWandItem", 271).getInt(271) ;
 		
-		nickValidCharacters = config.get("Functionality", "NickValidCharacters", "_-").value ;
+		nickValidCharacters = config.get("Functionality", "NickValidCharacters", "_-").getString() ;
 		bEnableChatFilter = config.get("Functionality", "EnableChatFilter", true).getBoolean(true) ;
 
 		if (nickValidCharacters.indexOf('&') >= 0 || nickValidCharacters.indexOf('\"') >= 0) {
@@ -228,6 +230,7 @@ public class NecessitiesMain {
 			if (bEnablePos1)			serverCommandManager.registerCommand(new CommandPos1()) ;
 			if (bEnablePos2)			serverCommandManager.registerCommand(new CommandPos2()) ;
 			if (bEnableLimit)			serverCommandManager.registerCommand(new CommandLimit()) ;
+			if (bEnableChunk)			serverCommandManager.registerCommand(new CommandChunk()) ;
 		}
 			
 		GameRegistry.registerPlayerTracker(new PlayerTracker(necessities_data)) ;

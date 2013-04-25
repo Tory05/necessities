@@ -115,7 +115,7 @@ public class CommandDrain extends CommandBaseNecessities {
     				if (dist - 0.5 < radius) {  // This means we are within the sphere
     					if (blocks.contains(playerMP.getServerForPlayer().getBlockId((int)i, (int)j, (int)k))) {
     						if (count < limit) {
-    							playerMP.getServerForPlayer().setBlockWithNotify((int)i, (int)j, (int)k, 0) ;
+    							playerMP.getServerForPlayer().setBlock((int)i, (int)j, (int)k, 0) ;
     						}
     						count++ ;
     					} // if (block needs to be changed)

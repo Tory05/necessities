@@ -56,7 +56,7 @@ public class CommandReport extends CommandBaseNecessities {
 
     	for (int i = 0; i < 4096; ++i) {
     		if (Item.itemsList[i] != null)
-    			System.out.println("Item[" + i + "] == " + Item.itemsList[i].getItemName()) ;
+    			System.out.println("Item[" + i + "] == " + Item.itemsList[i].getUnlocalizedName()) ;
     		
     		//if (Block.blocksList[i] != null)
     		//	System.out.println("Block[" + i + "] == " + Block.blocksList[i].getBlockName()) ;
