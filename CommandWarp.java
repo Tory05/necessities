@@ -35,7 +35,7 @@ public class CommandWarp extends CommandBaseNecessities {
     	EntityPlayerMP playerMP = (EntityPlayerMP) sender ;
     	
     	if (var2.length != 1) {
-    		sender.sendChatToPlayer("Usage:  /" + getCommandName() + " <warpname>") ;
+    		player.addChatMessage("Usage:  /" + getCommandName() + " <warpname>") ;
     		return ;
     	}
 
@@ -45,7 +45,7 @@ public class CommandWarp extends CommandBaseNecessities {
     	NecessitiesMain.instance.necessities_data.setCompoundTag("[Warps]", warps) ;
 
     	if (!warps.hasKey(var2[0])) {
-    		sender.sendChatToPlayer("Unknown warp \"" + var2[0] + "\"") ;
+    		player.addChatMessage("Unknown warp \"" + var2[0] + "\"") ;
     		return ;
     	}
     	

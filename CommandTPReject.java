@@ -33,8 +33,8 @@ public class CommandTPReject extends CommandBaseNecessities {
     	playerdata.setCompoundTag("[Tpa]", tpa) ;
     	String who = tpa.getString("Who") ;
     	EntityPlayerMP other = func_82359_c(sender, who) ;
-    	other.sendChatToPlayer(player.username + " has rejected your teleport request.") ;
-    	player.sendChatToPlayer("Teleport request from " + who + " rejected.") ;
+    	other.addChatMessage(player.username + " has rejected your teleport request.") ;
+    	player.addChatMessage("Teleport request from " + who + " rejected.") ;
     	tpa.removeTag("Who") ;
     	tpa.removeTag("PosX") ;
     	tpa.removeTag("PosY") ;

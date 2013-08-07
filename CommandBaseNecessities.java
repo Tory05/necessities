@@ -51,7 +51,8 @@ public class CommandBaseNecessities extends CommandBase {
 
 		if (!isPlayer(sender)) {
 			if (!allowConsole) {
-				sender.sendChatToPlayer("Command not allowed from server console.") ;
+				EntityPlayer player = (EntityPlayer)sender ;
+				player.addChatMessage("Command not allowed from server console.") ;
 				return false ;
 			}
 		} // if (!isPlayer(sender))

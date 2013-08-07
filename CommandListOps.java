@@ -29,23 +29,24 @@ public class CommandListOps extends CommandBaseNecessities {
     public void processCommand(ICommandSender sender, String[] par2ArrayOfStr)
     {
     	Set ops = ModLoader.getMinecraftServerInstance().getConfigurationManager().getOps();
+    	EntityPlayer player = getCommandSenderAsPlayer(sender) ;
 
     	if (ops.isEmpty()) {
-    		sender.sendChatToPlayer("There are no ops in the set.") ;
+    		player.addChatMessage("There are no ops in the set.") ;
     		return ;
     	}
     	
     	String msg = "" ;
-    	sender.sendChatToPlayer("Current OPs:") ;
+    	player.addChatMessage("Current OPs:") ;
     	Iterator i = ops.iterator() ;
     	while (i.hasNext()) {
     		msg += i.next() + " " ;
     		if (msg.length() > 100) {
-    			sender.sendChatToPlayer(msg) ;
+    			player.addChatMessage(msg) ;
     			msg = "" ;
     		}
     	} // while(...)
-    	sender.sendChatToPlayer(msg) ;
+    	player.addChatMessage(msg) ;
     	
     } // public void processCommand(...)
 	

@@ -6,6 +6,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.ModLoader;
 import net.minecraft.command.* ;
+import net.minecraft.entity.player.EntityPlayer;
 
 
 public class CommandMemInfo extends CommandBaseNecessities {
@@ -26,15 +27,16 @@ public class CommandMemInfo extends CommandBaseNecessities {
     public void processCommand(ICommandSender sender, String[] par2ArrayOfStr)
     {
     	MinecraftServer server = ModLoader.getMinecraftServerInstance() ;
+    	EntityPlayer player = getCommandSenderAsPlayer(sender) ;
     	long maxmem = Runtime.getRuntime().maxMemory() / 1024L / 1024L ;
     	long usedmem = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024L / 1024L ;
     	long percent = Runtime.getRuntime().freeMemory() * 100L / Runtime.getRuntime().maxMemory() ;
     	int loadedChunks = NecessitiesMain.instance.necessities_data.getInteger("[Chunks]") ;
     	
     	String msg = "Memory:  " + usedmem + "MB used out of " + maxmem + "MB (" +  percent + "% free)" ;
-    	sender.sendChatToPlayer(msg) ;
+    	player.addChatMessage(msg) ;
     	msg = "Loaded Chunks:  " + loadedChunks ;
-    	sender.sendChatToPlayer(msg) ;
+    	player.addChatMessage(msg) ;
     	
     } // public void processCommand(...)
   	

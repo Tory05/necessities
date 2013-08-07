@@ -11,6 +11,7 @@ import cpw.mods.fml.common.network.FMLNetworkHandler;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.ModLoader;
@@ -39,13 +40,15 @@ public class CommandMods extends CommandBaseNecessities {
 
     public void processCommand(ICommandSender sender, String[] par2ArrayOfStr)
     {
+    	
+    	EntityPlayer player = getCommandSenderAsPlayer(sender) ;
     	String result = "" ;
     	
     	List<ModContainer> mods = Loader.instance().getModList() ; 
     	for (ModContainer mc : mods) 
     	{
     		if (2 + result.length() + mc.getModId().length() > 100) {
-    			sender.sendChatToPlayer(result) ;
+    			player.addChatMessage(result) ;
     			result = "\u00a72" + mc.getModId() ;
     		} else {
     			if (result.length() > 0)
@@ -55,7 +58,7 @@ public class CommandMods extends CommandBaseNecessities {
     		} // if (...)
             
         } // for (...)
-		sender.sendChatToPlayer(result) ;
+		player.addChatMessage(result) ;
     } // public void processCommand(...)
   	
 

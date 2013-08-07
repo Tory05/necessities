@@ -48,14 +48,15 @@ public class CommandButcher extends CommandBaseNecessities {
 
     	assert(sender instanceof EntityPlayer || sender instanceof EntityPlayerMP) ;
     	
+    	EntityPlayer player = getCommandSenderAsPlayer(sender) ;
+    	
     	if (var2.length < 1 || var2.length > 2) {
-    		sender.sendChatToPlayer(getCommandUsage(sender)) ;
+    		player.addChatMessage(getCommandUsage(sender)) ;
     		return ;
     	}
     	
     	double r = Double.parseDouble(var2[0]) ;
     	r *= r ;
-    	EntityPlayer player = getCommandSenderAsPlayer(sender) ; 
     	List mobs = player.worldObj.loadedEntityList ;
     	Iterator it = mobs.iterator() ;
     	int count = 0 ;
@@ -85,7 +86,7 @@ public class CommandButcher extends CommandBaseNecessities {
     		} // if (dist < r)
     		
     	} // while (it.hasNext())
-    	sender.sendChatToPlayer("" + count + " mobs destroyed.") ;
+    	player.addChatMessage("" + count + " mobs destroyed.") ;
     	
     } // public void processCommand(...)
 		

@@ -50,7 +50,7 @@ public class CommandListHome extends CommandBaseNecessities {
     	
     	Collection c = homes.getTags() ;
     	if (c.isEmpty()) {
-    		sender.sendChatToPlayer("No homes have been defined.") ;
+    		player.addChatMessage("No homes have been defined.") ;
     		return ;
     	} else {
     		String str = "Homes:  " ;
@@ -59,7 +59,7 @@ public class CommandListHome extends CommandBaseNecessities {
     			NBTTagCompound t = (NBTTagCompound) o ;
     			str = str + t.getName() + " " ;
     		}
-    		sender.sendChatToPlayer(str) ;
+    		player.addChatMessage(str) ;
     	} // if (c.isEmpty())
     	
     } // public voice processCommand(...)

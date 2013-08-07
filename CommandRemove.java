@@ -33,15 +33,15 @@ public class CommandRemove extends CommandBaseNecessities {
     public void processCommand(ICommandSender sender, String[] var2)
     {
     	assert(sender instanceof EntityPlayer || sender instanceof EntityPlayerMP) ;
+    	EntityPlayer player = getCommandSenderAsPlayer(sender) ;
     	
     	if (var2.length != 1) {
-    		sender.sendChatToPlayer(getCommandUsage(sender)) ;
+    		player.addChatMessage(getCommandUsage(sender)) ;
     		return ;
     	}
     	
     	double r = Double.parseDouble(var2[0]) ;
     	r *= r ;
-    	EntityPlayer player = getCommandSenderAsPlayer(sender) ; 
     	List mobs = player.worldObj.loadedEntityList ;
     	Iterator it = mobs.iterator() ;
     	int count = 0 ;
@@ -62,7 +62,7 @@ public class CommandRemove extends CommandBaseNecessities {
     		} // if (dist < r)
     		
     	} // while (it.hasNext())
-    	sender.sendChatToPlayer("" + count + " items removed.") ;
+    	player.addChatMessage("" + count + " items removed.") ;
 
     }
 	

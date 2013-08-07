@@ -57,7 +57,7 @@ public class CommandSetSpawn extends CommandBaseNecessities {
 			e1.printStackTrace();
 		}
 
-    	sender.sendChatToPlayer("New spawn location has been set.") ;
+    	player.addChatMessage("New spawn location has been set.") ;
     	
     } // public void processCommand(...)
   	

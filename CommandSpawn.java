@@ -29,15 +29,16 @@ public class CommandSpawn extends CommandBaseNecessities {
 	@Override
     public void processCommand(ICommandSender sender, String[] par2ArrayOfStr)
     {
+		EntityPlayer player = getCommandSenderAsPlayer(sender) ;
+    	MinecraftServer server = ModLoader.getMinecraftServerInstance() ;
+    	EntityPlayerMP playerMP = (EntityPlayerMP) sender ;
+		
     	if (!NecessitiesMain.instance.necessities_data.hasKey("[Spawn]")) {
-    		sender.sendChatToPlayer("No Spawn point has been set.") ;
+    		player.addChatMessage("No Spawn point has been set.") ;
     		return ;
     	}
     	
-    	MinecraftServer server = ModLoader.getMinecraftServerInstance() ;
-    	EntityPlayer player = getCommandSenderAsPlayer(sender) ; 
-    	EntityPlayerMP playerMP = (EntityPlayerMP) sender ;
-    	sender.sendChatToPlayer("Returning to spawn point.") ;
+    	player.addChatMessage("Returning to spawn point.") ;
 
     	setBackLocation(player) ;
 

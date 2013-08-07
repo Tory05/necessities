@@ -32,7 +32,7 @@ public class CommandSeen extends CommandBaseNecessities {
     	EntityPlayer player = getCommandSenderAsPlayer(var1) ; 
     	
     	if (var2.length != 1) {
-    		var1.sendChatToPlayer("Usage:  /" + getCommandName() + " <playername>") ;
+    		player.addChatMessage("Usage:  /" + getCommandName() + " <playername>") ;
     		return ;
     	}
     	
@@ -46,13 +46,13 @@ public class CommandSeen extends CommandBaseNecessities {
 
             if (p.username.equalsIgnoreCase(var2[0]))
             {
-                var1.sendChatToPlayer("Player \"" + var2[0] + "\" is currently online.") ;
+                player.addChatMessage("Player \"" + var2[0] + "\" is currently online.") ;
                 return ;
             }
         }    	
     	
     	if (lastseen <= 0) {
-    		var1.sendChatToPlayer("Player \"" + var2[0] + "\" has never been seen.") ;
+    		player.addChatMessage("Player \"" + var2[0] + "\" has never been seen.") ;
     		return ;
     	} else {
     		long now = System.currentTimeMillis() ;
@@ -61,7 +61,7 @@ public class CommandSeen extends CommandBaseNecessities {
     		int days = (int)(lastseen / 86400) ;
     		int hours = (int)((lastseen - (days * 86400)) / 3600  ) ;
     		int mins = (int)((lastseen - (days * 86400) - (hours * 3600)) / 60) ;
-    		var1.sendChatToPlayer("Player \"" + var2[0] + "\" was last on " + days + " days, " + hours + " hours, " + mins + " minutes ago.") ;
+    		player.addChatMessage("Player \"" + var2[0] + "\" was last on " + days + " days, " + hours + " hours, " + mins + " minutes ago.") ;
     	}
 
 	} // public void processCommand(...)

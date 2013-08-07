@@ -55,7 +55,7 @@ public class CommandHome extends CommandBaseNecessities {
     	
     	// Go to the specified home
     	if (!homes.hasKey(ho)) {
-    		sender.sendChatToPlayer("Unknown home.") ;
+    		player.addChatMessage("Unknown home.") ;
     		return ;
     	}
     	

@@ -32,7 +32,7 @@ public class CommandPos2 extends CommandBaseNecessities {
    		we.setDouble("Pos2.X", player.posX) ;
    		we.setDouble("Pos2.Y", player.posY) ;
    		we.setDouble("Pos2.Z", player.posZ) ;
-   		sender.sendChatToPlayer("\u00a7dPosition 2 set.") ;
+   		player.addChatMessage("\u00a7dPosition 2 set.") ;
     }
 	
 	@Override

@@ -66,7 +66,7 @@ public class CommandDrain extends CommandBaseNecessities {
     	// lava == block id #10-11 (11 = stationary)  Block.lavaStill Block.lavaMoving
 
     	if (var2.length != 2) {
-    		sender.sendChatToPlayer(getCommandUsage(sender)) ;
+    		player.addChatMessage(getCommandUsage(sender)) ;
     		return ;
     	}
 
@@ -78,19 +78,19 @@ public class CommandDrain extends CommandBaseNecessities {
     		blocks.add(11) ;
     	} else if (var2[0].equalsIgnoreCase("oil")) {
     		if (oil == null) {
-    			sender.sendChatToPlayer("Oil is not registered in the LiquidDictionary.  Please install a mod that adds Oil.") ;
+    			player.addChatMessage("Oil is not registered in the LiquidDictionary.  Please install a mod that adds Oil.") ;
     		} else {
     			blocks.add(oil.itemID) ; 
     			blocks.add(oil.itemID - 1) ;
     		}
     	} else {
-    		sender.sendChatToPlayer("Invalid liquid name.") ;
+    		player.addChatMessage("Invalid liquid name.") ;
     		return ;
     	}
     	
     	radius = Double.parseDouble(var2[1]) ;
     	if (radius < 1.0 || radius > 100.0) {
-    		sender.sendChatToPlayer("Radius must be between 1 and 100") ;
+    		player.addChatMessage("Radius must be between 1 and 100") ;
     		return ;
     	}
 
@@ -125,7 +125,7 @@ public class CommandDrain extends CommandBaseNecessities {
     		
     	} // for (...)
     	
-    	sender.sendChatToPlayer("" + count + " blocks changed.") ;
+    	player.addChatMessage("" + count + " blocks changed.") ;
     	
     } // public void processCommand(...)	
 

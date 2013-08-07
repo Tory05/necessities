@@ -36,13 +36,13 @@ public class CommandDelHome extends CommandBaseNecessities {
 
 		assert(sender instanceof EntityPlayer || sender instanceof EntityPlayerMP) ;
 		
+		MinecraftServer server = ModLoader.getMinecraftServerInstance() ;
+		EntityPlayer player = getCommandSenderAsPlayer(sender) ;
+		
 		if (par2ArrayOfStr.length != 1) {
-			sender.sendChatToPlayer(getCommandUsage(sender)) ;
+			player.addChatMessage(getCommandUsage(sender)) ;
 			return ;
 		}
-		
-		MinecraftServer server = ModLoader.getMinecraftServerInstance() ;
-    	EntityPlayer player = getCommandSenderAsPlayer(sender) ; 
 
     	NBTTagCompound playerdata = NecessitiesMain.instance.necessities_data.getCompoundTag(player.username) ;
     	NecessitiesMain.instance.necessities_data.setCompoundTag(player.username, playerdata) ;
@@ -50,12 +50,12 @@ public class CommandDelHome extends CommandBaseNecessities {
     	playerdata.setCompoundTag("Homes", homes) ;
 
     	if (!homes.hasKey(par2ArrayOfStr[0])) {
-    		sender.sendChatToPlayer("Unknown home.") ;
+    		player.addChatMessage("Unknown home.") ;
     		return ;
     	}
     	
     	homes.removeTag(par2ArrayOfStr[0]) ;  
-    	sender.sendChatToPlayer("Home \"" + par2ArrayOfStr[0] + "\" deleted.") ;
+    	player.addChatMessage("Home \"" + par2ArrayOfStr[0] + "\" deleted.") ;
 	}
 
 	@Override

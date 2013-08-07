@@ -36,7 +36,7 @@ public class CommandToggleEditWand extends CommandBaseNecessities {
     		t = !t ;
     	} 
     	playerdata.setBoolean("[ToggleEditWand]", t) ;
-    	sender.sendChatToPlayer("Wand Status changed.") ;
+    	player.addChatMessage("Wand Status changed.") ;
     	
     } // public void processCommand(...)
 	

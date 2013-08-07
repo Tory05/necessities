@@ -35,7 +35,7 @@ public class CommandDelSel extends CommandBaseNecessities {
    		we.removeTag("Pos2.X") ;
    		we.removeTag("Pos2.Y") ;
    		we.removeTag("Pos2.Z") ;
-   		sender.sendChatToPlayer("Region cleared.") ;
+   		player.addChatMessage("Region cleared.") ;
     }
 	
 	@Override

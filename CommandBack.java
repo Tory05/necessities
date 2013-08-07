@@ -42,7 +42,7 @@ public class CommandBack extends CommandBaseNecessities {
     	NecessitiesMain.instance.necessities_data.setCompoundTag(player.username, playerdata) ;
 
     	if (!playerdata.hasKey("[Back]")) {
-    		sender.sendChatToPlayer("No position to go back to!") ;
+    		player.addChatMessage("No position to go back to!") ;
     		return ;
     	}
     	

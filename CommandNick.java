@@ -13,6 +13,7 @@ import cpw.mods.fml.common.Loader;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -36,15 +37,17 @@ public class CommandNick extends CommandBaseNecessities {
 
     public void processCommand(ICommandSender sender, String[] var2)
     {
+    	EntityPlayer player = getCommandSenderAsPlayer(sender) ;
+    	
 		if (var2.length < 1 || var2.length > 2) {
-			sender.sendChatToPlayer(getCommandUsage(sender)) ;
+			player.addChatMessage(getCommandUsage(sender)) ;
    			return ;
    		}
 
 		// Check for special case where necessities.nick.self and user put someone else's name in
 		if (!sender.getCommandSenderName().equalsIgnoreCase(var2[0])) {
 			if (!hasPermission(sender, "necessities.nick.others", false, false)) {
-				sender.sendChatToPlayer("You do not have permission to change nicknames for anyone other than yourself.") ;
+				player.addChatMessage("You do not have permission to change nicknames for anyone other than yourself.") ;
 				return ;
 			}
 		}
@@ -57,15 +60,15 @@ public class CommandNick extends CommandBaseNecessities {
 
    		if (var2.length == 1) { // clear nickname
    			playerdata.removeTag("Nick") ;
-   			sender.sendChatToPlayer("Nickname for player " + var2[0] + " has been cleared.") ;
+   			player.addChatMessage("Nickname for player " + var2[0] + " has been cleared.") ;
    			return ;
    		} else {
    			if (validNick(var2[1], NecessitiesMain.instance.nickValidCharacters)) {
    				playerdata.setString("Nick",  var2[1]) ;
-   				sender.sendChatToPlayer("Nickname for player " + var2[0] + " has been set to " + var2[1]) ;
+   				player.addChatMessage("Nickname for player " + var2[0] + " has been set to " + var2[1]) ;
    				return ;
    			} else {
-   				sender.sendChatToPlayer("Invalid Nickname") ;
+   				player.addChatMessage("Invalid Nickname") ;
    			}
    		}
 

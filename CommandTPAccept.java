@@ -43,8 +43,8 @@ public class CommandTPAccept extends CommandBaseNecessities {
 
 
     	if (tpa.hasKey("Command")) { // accepting a /tpa
-    		other.sendChatToPlayer(player.username + " has accepted your teleport request.") ;
-    		player.sendChatToPlayer("Teleport request from " + who + " accepted.") ;
+    		other.addChatMessage(player.username + " has accepted your teleport request.") ;
+    		player.addChatMessage("Teleport request from " + who + " accepted.") ;
     		
     		if (player.dimension != other.dimension) {
     			server.getConfigurationManager().transferPlayerToDimension(other, player.dimension) ;
@@ -56,8 +56,8 @@ public class CommandTPAccept extends CommandBaseNecessities {
     	} else { // accepting a /tpahere
     		setBackLocation(player) ;
     	
-    		other.sendChatToPlayer(player.username + " has accepted your teleport request.") ;
-    		player.sendChatToPlayer("Teleport request from " + who + " accepted.") ;
+    		other.addChatMessage(player.username + " has accepted your teleport request.") ;
+    		player.addChatMessage("Teleport request from " + who + " accepted.") ;
     		double posX = tpa.getDouble("PosX") ;
     		double posY = tpa.getDouble("PosY") ;
     		double posZ = tpa.getDouble("PosZ") ;

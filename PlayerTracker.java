@@ -53,7 +53,7 @@ public class PlayerTracker implements IPlayerTracker {
 		}
 		
 		if (motd.length() > 0)
-			player.sendChatToPlayer(motd) ;
+			player.addChatMessage(motd) ;
 
 	} // public void onPlayerLogin(...)
 

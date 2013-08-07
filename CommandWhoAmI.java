@@ -24,7 +24,9 @@ public class CommandWhoAmI extends CommandBaseNecessities {
 	@Override
     public void processCommand(ICommandSender sender, String[] par2ArrayOfStr)
     {
-		sender.sendChatToPlayer("Your user name is:  " + sender.getCommandSenderName()) ;
+    	EntityPlayer player = getCommandSenderAsPlayer(sender) ; 
+
+		player.addChatMessage("Your user name is:  " + sender.getCommandSenderName()) ;
     }
 	
 	@Override

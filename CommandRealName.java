@@ -34,7 +34,7 @@ public class CommandRealName extends CommandBaseNecessities {
     	EntityPlayer player = getCommandSenderAsPlayer(var1) ; 
 
     	if (var2.length != 1) {
-    		var1.sendChatToPlayer("Usage:  /" + getCommandName() + " <nickname>") ;
+    		player.addChatMessage("Usage:  /" + getCommandName() + " <nickname>") ;
     		return ;
     	}
     	
@@ -49,12 +49,12 @@ public class CommandRealName extends CommandBaseNecessities {
             
             if (var2[0].equalsIgnoreCase(stripcodes(nick)))
             {
-                var1.sendChatToPlayer("Realname for  \"" + var2[0] + "\" is \"" + p.username + "\"") ;
+                player.addChatMessage("Realname for  \"" + var2[0] + "\" is \"" + p.username + "\"") ;
                 return ;
             }
         }    	
     	
-    	var1.sendChatToPlayer("No user with the nickname \"" + var2[0] + "\" was found.") ;
+    	player.addChatMessage("No user with the nickname \"" + var2[0] + "\" was found.") ;
     	
 	} // public void processCommand(...)
 

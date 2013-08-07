@@ -37,7 +37,7 @@ public class CommandSetWarp extends CommandBaseNecessities {
 
     	// First sanity check the arguments
     	if (var2.length != 1) {
-    		var1.sendChatToPlayer("Usage:  /" + getCommandName() + " <warpname>") ;
+    		player.addChatMessage("Usage:  /" + getCommandName() + " <warpname>") ;
     		return ;
     	}
         	
@@ -53,7 +53,7 @@ public class CommandSetWarp extends CommandBaseNecessities {
     	w.setFloat("Pitch", player.rotationPitch) ;
 		w.setInteger("Dim", player.dimension) ;
 		warps.setCompoundTag(var2[0], w) ;
-		var1.sendChatToPlayer("Warp \"" + var2[0] + "\" created.") ;
+		player.addChatMessage("Warp \"" + var2[0] + "\" created.") ;
    	}
 
 	@Override

@@ -25,17 +25,19 @@ public class CommandTPDenyAll extends CommandBaseNecessities {
 	@Override
     public void processCommand(ICommandSender sender, String[] par2ArrayOfStr)
     {
-    	if (par2ArrayOfStr.length != 1) {
-    		sender.sendChatToPlayer(getCommandUsage(sender)) ;
+
+    	EntityPlayer player = getCommandSenderAsPlayer(sender) ; 
+
+		if (par2ArrayOfStr.length != 1) {
+    		player.addChatMessage(getCommandUsage(sender)) ;
     		return ;
     	}
 
     	if (!par2ArrayOfStr[0].equalsIgnoreCase("true") && !par2ArrayOfStr[0].equalsIgnoreCase("false")) {
-    		sender.sendChatToPlayer(getCommandUsage(sender)) ;
+    		player.addChatMessage(getCommandUsage(sender)) ;
     		return ;
     	}
     	
-    	EntityPlayer player = getCommandSenderAsPlayer(sender) ; 
 
     	NBTTagCompound playerdata = NecessitiesMain.instance.necessities_data.getCompoundTag(player.username) ;
     	NecessitiesMain.instance.necessities_data.setCompoundTag(player.username, playerdata) ;

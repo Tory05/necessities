@@ -48,7 +48,7 @@ public class CommandSetHome extends CommandBaseNecessities {
     	
     	Collection c = homes.getTags() ;
     	if ((c.size() > NecessitiesMain.instance.necessities_data.getInteger("[HomeCount]")) || (c.size() == NecessitiesMain.instance.necessities_data.getInteger("[HomeCount]") && !homes.hasKey(par2ArrayOfStr[0]))) {
-    		sender.sendChatToPlayer("Too many homes defined.") ;
+    		player.addChatMessage("Too many homes defined.") ;
     		return ;
     	}
 
@@ -61,7 +61,7 @@ public class CommandSetHome extends CommandBaseNecessities {
 		house.setFloat("Yaw", player.rotationYaw) ;
 		house.setFloat("Pitch", player.rotationPitch); 
 		homes.setCompoundTag(h, house) ;
-		sender.sendChatToPlayer("Home \"" + h + "\" set.") ;
+		player.addChatMessage("Home \"" + h + "\" set.") ;
     	
     } // public void processCommand(...)
   	

@@ -31,14 +31,16 @@ public class CommandSetHomeCount extends CommandBaseNecessities {
     public void processCommand(ICommandSender sender, String[] par2ArrayOfStr)
     {
 
+    	EntityPlayer player = getCommandSenderAsPlayer(sender) ;
+    	
     	if (par2ArrayOfStr.length != 1) {
-    		sender.sendChatToPlayer("Usage:  /" + getCommandName() + " #") ;
+    		player.addChatMessage("Usage:  /" + getCommandName() + " #") ;
     		return ;
     	}
     	
     	int hc = new Integer(par2ArrayOfStr[0]) ;
     	if (hc < 1 || hc > 10) {
-    		sender.sendChatToPlayer("# homes must be between 1 and 10") ;
+    		player.addChatMessage("# homes must be between 1 and 10") ;
     		return ;
     	}
     	

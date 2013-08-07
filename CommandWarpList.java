@@ -35,7 +35,7 @@ public class CommandWarpList extends CommandBaseNecessities {
     	
     	Collection c = warps.getTags() ;
     	if (c.isEmpty()) {
-    		var1.sendChatToPlayer("No warps have been defined.") ;
+    		player.addChatMessage("No warps have been defined.") ;
     		return ;
     	} else {
     		String str = "Warps:  " ;
@@ -45,7 +45,7 @@ public class CommandWarpList extends CommandBaseNecessities {
     			str = str + t.getName() + " " ;
     		}
     	
-    		var1.sendChatToPlayer(str) ;
+    		player.addChatMessage(str) ;
     		
     	} // if (c.isEmpty())
 

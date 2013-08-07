@@ -33,16 +33,19 @@ public class CommandDelWarp extends CommandBaseNecessities {
     	MinecraftServer server = ModLoader.getMinecraftServerInstance() ;
     	EntityPlayer player = getCommandSenderAsPlayer(var1) ; 
 
+    	if (var2.length < 1)
+    		return ;
+    	
     	NBTTagCompound warps = NecessitiesMain.instance.necessities_data.getCompoundTag("[Warps]") ;
     	NecessitiesMain.instance.necessities_data.setCompoundTag("[Warps]", warps) ;
 
     	if (!warps.hasKey(var2[0])) {
-    		var1.sendChatToPlayer("Unknown warp.") ;
+    		player.addChatMessage("Unknown warp.") ;
     		return ;
     	}
     	
     	warps.removeTag(var2[0]) ;  
-    	var1.sendChatToPlayer("Warp \"" + var2[0] + "\" deleted.") ;
+    	player.addChatMessage("Warp \"" + var2[0] + "\" deleted.") ;
 
 	} // public void processCommand(...)
 

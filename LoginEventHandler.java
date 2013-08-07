@@ -60,6 +60,8 @@ public class LoginEventHandler {
 	public void onServerChatEvent(ServerChatEvent event) {
 		if (!NecessitiesMain.instance.bEnableChatFilter)
 			return ;
+
+/*		
 		if (data.hasKey(event.username)) {
 			NBTTagCompound playerdata = data.getCompoundTag(event.username) ;
 			if (playerdata.hasKey("Nick")) {
@@ -75,8 +77,9 @@ public class LoginEventHandler {
 		} else {
 			event.line = ">" + event.username + "<  " + colorize(event.message) ;
 		}
-		
-	} // public void onServerChatEvent(...)
+*/
+
+} // public void onServerChatEvent(...)
 	
 	
 	
@@ -106,12 +109,12 @@ public class LoginEventHandler {
 			we.setDouble("Pos1.X", player.posX) ;
 			we.setDouble("Pos1.Y", player.posY) ;
 			we.setDouble("Pos1.Z", player.posZ) ; 
-			player.sendChatToPlayer("\u00a7dPosition 1 set to (" + player.posX + ", " + player.posY + ", " + player.posZ + ")") ;
+			player.addChatMessage("\u00a7dPosition 1 set to (" + player.posX + ", " + player.posY + ", " + player.posZ + ")") ;
 		} else if (event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
 			we.setDouble("Pos2.X", player.posX) ;
 			we.setDouble("Pos2.Y", player.posY) ;
 			we.setDouble("Pos2.Z", player.posZ) ; 
-			player.sendChatToPlayer("\u00a7dPosition 2 set to (" + player.posX + ", " + player.posY + ", " + player.posZ + ")") ;
+			player.addChatMessage("\u00a7dPosition 2 set to (" + player.posX + ", " + player.posY + ", " + player.posZ + ")") ;
 		} else {
 			return ;
 		}
