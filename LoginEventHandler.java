@@ -3,6 +3,7 @@ package kdx7214.necessities;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.ServerChatEvent;
@@ -58,27 +59,29 @@ public class LoginEventHandler {
 	
 	@ForgeSubscribe
 	public void onServerChatEvent(ServerChatEvent event) {
+		String line ;
+		
 		if (!NecessitiesMain.instance.bEnableChatFilter)
 			return ;
 
-/*		
 		if (data.hasKey(event.username)) {
 			NBTTagCompound playerdata = data.getCompoundTag(event.username) ;
 			if (playerdata.hasKey("Nick")) {
 				String nick = playerdata.getString("Nick") ;
 				if (nick.isEmpty())
 					nick = event.username ;
-				event.line = "<" + colorize(nick) + "\u00a7r> " + colorize(event.message) ;
+				line = "<" + colorize(nick) + "\u00a7r> " + colorize(event.message) ;
 				return ;
 			}
 		}
 		if (NecessitiesMain.instance.bUseNormalBrackets) {
-			event.line = "<" + event.username + ">  " + colorize(event.message) ;
+			line = "<" + event.username + ">  " + colorize(event.message) ;
 		} else {
-			event.line = ">" + event.username + "<  " + colorize(event.message) ;
+			line = ">" + event.username + "<  " + colorize(event.message) ;
 		}
-*/
-
+		
+		event.component = ChatMessageComponent.func_111077_e(line) ;
+		
 } // public void onServerChatEvent(...)
 	
 	
@@ -96,11 +99,12 @@ public class LoginEventHandler {
     	NBTTagCompound playerdata = NecessitiesMain.instance.necessities_data.getCompoundTag(player.username) ;
     	NecessitiesMain.instance.necessities_data.setCompoundTag(player.username, playerdata) ;
 
-    	// if not found, default to true
-    	if (playerdata.hasKey("[ToggleEditWand]")) {
-    		if (!playerdata.getBoolean("[ToggleEditWand]"))
-    			return ;
-    	}
+    	// if not found, default to false
+    	if (!playerdata.hasKey("[ToggleEditWand]"))
+    		return ;
+
+    	if (!playerdata.getBoolean("[ToggleEditWand]"))
+    		return ;
 
    		NBTTagCompound we = playerdata.getCompoundTag("[Worldedit]") ;
    		playerdata.setCompoundTag("[Worldedit]",  we) ;

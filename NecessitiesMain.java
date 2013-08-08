@@ -16,6 +16,7 @@ import net.minecraft.nbt.* ;
 import net.minecraft.command.* ;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
@@ -33,7 +34,7 @@ import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.common.Configuration;
 
-@Mod(modid = "necessities", name = "Necessities", version = "0.6.9")
+@Mod(modid = "necessities", name = "Necessities", version = "0.7.0")
 @NetworkMod(clientSideRequired = false, serverSideRequired = true)
 public class NecessitiesMain {
 
@@ -59,7 +60,7 @@ public class NecessitiesMain {
 	@Instance("necessities")
 	public static NecessitiesMain instance;
 
-	@PreInit
+	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
@@ -126,17 +127,17 @@ public class NecessitiesMain {
 		
 	} // PreInit
 
-	@Init
-	public void init(FMLInitializationEvent event) {
+	@EventHandler
+	public void Init(FMLInitializationEvent event) {
 		
 	}
 
-	@PostInit
+	@EventHandler
 	public static void postInit(FMLPostInitializationEvent event) {
 		
 	}
 	
-	@ServerStarting
+	@EventHandler
 	public void serverStarting(FMLServerStartingEvent event) {
 		server = ModLoader.getMinecraftServerInstance() ;
 		ICommandManager commandManager = server.getCommandManager() ;
@@ -244,7 +245,7 @@ public class NecessitiesMain {
 		
 	} // serverStarting()
 	
-	@ServerStopping
+	@EventHandler
 	public void serverStopping(FMLServerStoppingEvent event) {
 	
 		FileOutputStream fos ;

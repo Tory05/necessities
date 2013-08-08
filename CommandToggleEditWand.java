@@ -26,7 +26,7 @@ public class CommandToggleEditWand extends CommandBaseNecessities {
 	@Override
     public void processCommand(ICommandSender sender, String[] par2ArrayOfStr)
     {
-		boolean t = false ;
+		boolean t = true ;
     	EntityPlayer player = getCommandSenderAsPlayer(sender) ; 
     	NBTTagCompound playerdata = NecessitiesMain.instance.necessities_data.getCompoundTag(player.username) ;
     	NecessitiesMain.instance.necessities_data.setCompoundTag(player.username, playerdata) ;
